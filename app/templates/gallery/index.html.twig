@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Gallery{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .content {
+        margin-left: 250px;
+        padding: 20px;
+        width: calc(100% - 250px);
+    }
+
+    @media (max-width: 768px) {
+        .content {
+            margin-left: 0;
+            width: 100%;
+        }
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -15px;
+    }
+
+    .col-md-8,
+    .col-md-4 {
+        padding: 15px;
+    }
+
+    .col-md-8 {
+        flex: 0 0 66.6667%;
+        max-width: 66.6667%;
+    }
+
+    .col-md-4 {
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+    }
+
+    .thumbnails {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .col-xs-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .thumbnail {
+        display: block;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        text-decoration: none;
+        color: black;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 100%;
+    }
+
+    .thumbnail img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .photo-info {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+</style>
+{% endblock %}
+
+{% block header %}
+    {% include 'header.html.twig' with { total_photos: photos|length } %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="thumbnails">
+            {% for photo in photos %}
+                <div class="col-xs-6 col-md-3">
+                    <a class="thumbnail" href="photo?id={{ photo.id }}">
+                        <img src="{{ photo.imagePath }}" alt="{{ photo.title }}">
+                    </a>
+                    <div class="photo-info">
+                        Created: 
+                        {% for user in photo.users %}
+                            {{ user.username }}
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div>Description: {{ photo.description }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="mx-auto w-4/5 my-8">
+            <a 
+                href="/create" 
+                class="uppercase border border-gray-500 text-lg py-4 px-6 rounded transition transition-all bg-gray-800 text-white hover:bg-white hover:text-gray-800">
+                Create New Photo
+            </a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        {% include 'sidebar.html.twig' %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    function toggleSidebar() {
+        var sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('active');
+    }
+</script>
+{% endblock %}

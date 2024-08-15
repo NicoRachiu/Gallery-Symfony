@@ -1,0 +1,155 @@
+<style>
+    /* Sidebar Styles */
+    .sidebar {
+        background-color: #222;
+        color: white;
+        width: 250px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        z-index: 1000;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar .navbar-brand {
+        color: white;
+        text-decoration: none;
+        font-size: 24px;
+        text-align: center;
+        padding: 10px 20px;
+    }
+
+    .sidebar .navbar-toggle {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        display: none;
+    }
+
+    .sidebar .nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar .nav > li {
+        width: 100%;
+    }
+
+    .sidebar .nav > li > a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        display: block;
+    }
+
+    .sidebar .nav > li > a:hover {
+        background-color: #444;
+    }
+
+    .sidebar .dropdown-menu {
+        display: none;
+        background-color: #333;
+        position: static;
+    }
+
+    .sidebar .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .sidebar .dropdown-menu > li > a {
+        padding: 10px 20px;
+    }
+
+    .label {
+        display: inline-block;
+        padding: 2px 5px;
+        font-size: 12px;
+        font-weight: bold;
+        border-radius: 3px;
+    }
+
+    .label-default { background-color: #777; }
+    .label-primary { background-color: #337ab7; }
+    .label-success { background-color: #5cb85c; }
+    .label-info { background-color: #5bc0de; }
+    .label-warning { background-color: #f0ad4e; }
+    .label-danger { background-color: #d9534f; }
+
+    .divider {
+        height: 1px;
+        background-color: #e5e5e5;
+        margin: 9px 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: static;
+            display: none;
+        }
+
+        .sidebar.active {
+            display: flex;
+        }
+
+        .sidebar .navbar-toggle {
+            display: block;
+            margin-right: 20px;
+        }
+    }
+</style>
+
+<nav class="sidebar">
+    <button class="navbar-toggle" onclick="toggleSidebar()">
+        ☰
+    </button>
+    <a class="navbar-brand" href="#">Home</a>
+    <ul class="nav">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+            <ul class="dropdown-menu message-dropdown">
+                <!-- Messages here -->
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+            <ul class="dropdown-menu alert-dropdown">
+                <!-- Alerts here -->
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="#"><i class="fa fa-fw fa-user"></i> Profile</a></li>
+                <li><a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a></li>
+                <li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>
+            </ul>
+        </li>
+        <li><a href="/gallery"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="/users"><i class="fa fa-fw fa-users"></i> Users</a></li>
+        <li><a href="/create"><i class="fa fa-fw fa-upload"></i> Upload</a></li>
+        <li><a href="/photos"><i class="fa fa-fw fa-photo"></i> Photos</a></li>
+        <li><a href="/comments"><i class="fa fa-fw fa-comments"></i> Comments</a></li>
+    </ul>
+    <div class="photo-count">
+        <p>Total Photos: {{ total_photos }}</p>
+    </div>
+</nav>
+
+<script>
+    function toggleSidebar() {
+        var sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('active');
+    }
+</script>
