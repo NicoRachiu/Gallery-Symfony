@@ -1,135 +1,51 @@
 {% block sidebar %}
-<style>
-    .well {
-        background-color: #f5f5f5;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        padding: 15px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .well h4 {
-        margin-top: 0;
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    .input-group {
-        display: flex;
-        width: 100%;
-    }
-
-    .input-group .form-control {
-        flex: 1;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px 0 0 4px;
-    }
-
-    .input-group-btn {
-        display: flex;
-    }
-
-    .input-group-btn .btn {
-        padding: 10px 15px;
-        border: 1px solid #ccc;
-        border-left: 0;
-        background-color: #ddd;
-        border-radius: 0 4px 4px 0;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .input-group-btn .btn:hover {
-        background-color: #ccc;
-    }
-
-    .glyphicon {
-        font-family: "Glyphicons Halflings";
-        font-style: normal;
-        font-weight: 400;
-        line-height: 1;
-    }
-
-    .glyphicon-search:before {
-        content: "\e003";
-    }
-
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-        margin: -10px;
-    }
-
-    .col-lg-6 {
-        flex: 0 0 50%;
-        max-width: 50%;
-        padding: 10px;
-    }
-
-    .list-unstyled {
-        padding-left: 0;
-        list-style: none;
-    }
-
-    .list-unstyled li {
-        margin-bottom: 10px;
-    }
-
-    .list-unstyled a {
-        color: #337ab7;
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-
-    .list-unstyled a:hover {
-        color: #23527c;
-    }
-</style>
-
-<div class="well">
-    <h4>Blog Search</h4>
-    <div class="input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-        </span>
+<!-- Blog Search Widget -->
+<div class="card mb-4 shadow-sm">
+    <h5 class="card-header bg-dark text-white">Blog Search</h5>
+    <div class="card-body">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search...">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button">
+                    <i class="bi bi-search"></i> <!-- Utilizza le icone di Bootstrap Icons -->
+                </button>
+            </div>
+        </div>
     </div>
-    <!-- /.input-group -->
 </div>
 
-<!-- Blog Categories Well -->
-<div class="well">
-    <h4>Blog Categories</h4>
-    <div class="row">
-        <div class="col-lg-6">
-            <ul class="list-unstyled">
-                <li><a href="#">Category Name</a></li>
-                <li><a href="#">Category Name</a></li>
-                <li><a href="#">Category Name</a></li>
-                <li><a href="#">Category Name</a></li>
-            </ul>
+<!-- Blog Categories Widget -->
+<div class="card mb-4 shadow-sm">
+    <h5 class="card-header bg-dark text-white">Blog Categories</h5>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                    <li><a href="#" class="text-decoration-none text-primary">Category Name</a></li>
+                    <li><a href="#" class="text-decoration-none text-primary">Category Name</a></li>
+                    <li><a href="#" class="text-decoration-none text-primary">Category Name</a></li>
+                    <li><a href="#" class="text-decoration-none text-primary">Category Name</a></li>
+                </ul>
+            </div>
+            <!-- /.col-lg-6 -->
+            <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                    <li><a href="#" class="text-decoration-none text-primary">Category Name</a></li>
+                    <li><a href="#" class="text-decoration-none text-primary">Category Name</a></li>
+                    <li><a href="#" class="text-decoration-none text-primary">Category Name</a></li>
+                    <li><a href="#" class="text-decoration-none text-primary">Category Name</a></li>
+                </ul>
+            </div>
+            <!-- /.col-lg-6 -->
         </div>
-        <!-- /.col-lg-6 -->
-        <div class="col-lg-6">
-            <ul class="list-unstyled">
-                <li><a href="#">Category Name</a></li>
-                <li><a href="#">Category Name</a></li>
-                <li><a href="#">Category Name</a></li>
-                <li><a href="#">Category Name</a></li>
-            </ul>
-        </div>
-        <!-- /.col-lg-6 -->
     </div>
-    <!-- /.row -->
 </div>
 
-<!-- Side Widget Well -->
-<div class="well">
-    <h4>Side Widget Well</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+<!-- Side Widget -->
+<div class="card mb-4 shadow-sm">
+    <h5 class="card-header bg-dark text-white">Side Widget</h5>
+    <div class="card-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+    </div>
 </div>
 {% endblock %}

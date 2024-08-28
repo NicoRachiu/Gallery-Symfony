@@ -24,12 +24,16 @@ class Photos
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imagePath = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'photos')]
-    private Collection $users;
+    #[ORM\OneToMany(mappedBy: 'photos', targetEntity: Comment::class, orphanRemoval: true)]
+    private Collection $comments;
+
+    #[ORM\ManyToMany(targetEntity: Users::class, mappedBy: 'photos')]
+    private Collection $user;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->user = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -78,22 +82,60 @@ class Photos
      */
     public function getUsers(): Collection
     {
-        return $this->users;
+        return $this->user;
     }
 
-    public function addUser(User $user): static
+    public function addUser(Users $user): static
     {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
+        if (!$this->user->contains($user)) {
+            $this->user->add($user);
         }
 
         return $this;
     }
 
-    public function removeUser(User $user): static
+    public function removeUser(Users $user): static
     {
-        $this->users->removeElement($user);
+        $this->user->removeElement($user);
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setPhotos($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getPhotos() === $this) {
+                $comment->setPhotos(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Users>
+     */
+    public function getUser(): Collection
+    {
+        return $this->user;
     }
 }

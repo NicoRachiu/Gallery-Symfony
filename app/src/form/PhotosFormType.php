@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Form;
+namespace App\form;
 
 use App\Entity\Photos;
-use App\Entity\User;
+use App\Entity\Users;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,7 +27,7 @@ class PhotosFormType extends AbstractType
                 'attr' => ['class' => 'form-control']
             ])
             ->add('users', EntityType::class, [
-                'class' => User::class,
+                'class' => Users::class,
                 'choice_label' => 'username',
                 'multiple' => true,
                 'expanded' => true,
